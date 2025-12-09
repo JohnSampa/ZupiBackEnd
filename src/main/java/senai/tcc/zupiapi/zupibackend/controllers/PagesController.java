@@ -83,4 +83,9 @@ public class PagesController {
         return "jogoMemoria";
     }
 
+    @GetMapping("/JogoLigarObjetos")
+    public String JogoLigarObjetos() {
+        return "jogo-ligar-objetos";
+    }
+
 }

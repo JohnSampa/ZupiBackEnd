@@ -23,11 +23,11 @@ let tempoRestante;
 let intervaloTempo;
 
 // ======== SONS ========
-const somClick = new Audio('/src/main/resources/static/audio/click.wav');
-const somAcerto = new Audio('/src/main/resources/static/audio/acerto.wav');
-const somError = new Audio('/src/main/resources/static/audio/error.wav');
-const somGamecompleted = new Audio('/src/main/resources/static/audio/gamecompleted.wav');
-const somGameover = new Audio('/src/main/resources/static/audio/gameover.wav');
+const somClick = new Audio('/audio/click.wav');
+const somAcerto = new Audio('/audio/acerto.wav');
+const somError = new Audio('/audio/error.wav');
+const somGamecompleted = new Audio('/audio/gamecompleted.wav');
+const somGameover = new Audio('/audio/gameover.wav');
 
 
 
@@ -91,7 +91,7 @@ function gerarCartas(qtdPares) {
   carta.innerHTML = `
     <div class="carta-inner">
       <div class="carta-verso"></div>
-      <div class="carta-frente"><img src="/src/main/resources/static/img/${nome}.jpg" alt="${nome}"></div>
+      <div class="carta-frente"><img src="/img/${nome}.jpg" alt="${nome}"></div>
     </div>
   `;
   carta.addEventListener('click', () => virarCarta(carta, nome));
