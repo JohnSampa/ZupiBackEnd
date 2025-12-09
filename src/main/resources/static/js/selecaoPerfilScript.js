@@ -60,8 +60,8 @@
               <p class="card-text text-muted small"><strong>Condição:</strong> ${child.condition || 'Não informado'}</p>
               <div class="mt-auto">
                 <a href="menu-jogos.html" class="btn btn-primary btn-sm" role="button" >Acessar Jogos</a>
-                <a href="perfil-criancas.html" class="btn btn-primary btn-sm" role="button" onclick="createChildLocalID(${child.id})">Perfil</a>
-                <a href="relatorios.html" class="btn btn-outline-primary btn-sm" role="button" onclick="createChildLocalID(${child.id})">Ver Relatório</a>
+                <a href="/perfil-criancas" class="btn btn-primary btn-sm" role="button" onclick="createChildLocalID(${child.id})">Perfil</a>
+                <a href="/relatorios" class="btn btn-outline-primary btn-sm" role="button" onclick="createChildLocalID(${child.id})">Ver Relatório</a>
               </div>
             </div>
           </div>

@@ -31,4 +31,21 @@ public class PagesController {
     public String selecaoPerfil() {
         return "selecao-perfil";
     }
+
+    @GetMapping("/relatorios")
+    public String relatorios() {
+        return "relatorios";
+    }
+
+    @GetMapping("/perfil")
+    public String perfil() {
+        return "perfil-criancas";
+    }
+
+
+    @GetMapping("/agenda")
+    public String agenda() {
+        return "agenda";
+    }
+
 }
