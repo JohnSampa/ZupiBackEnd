@@ -74,9 +74,13 @@ public class PagesController {
     }
 
     @GetMapping("/menuJogos")
-    public String menuJogos() { return "menuJogos"; }
+    public String menuJogos() {
+        return "menuJogos";
+    }
 
     @GetMapping("/jogoMemoria")
-    public String jogoMemoria() { return "jogoMemoria"; }
+    public String jogoMemoria() {
+        return "jogoMemoria";
+    }
 
 }

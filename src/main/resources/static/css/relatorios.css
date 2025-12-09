@@ -3,6 +3,34 @@
    Estilos específicos da página de Relatórios
    =================================================== */
 
+/* Layout para manter footer no final */
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+body > .container-fluid {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+body > .container-fluid > .row {
+  flex: 1;
+  display: flex;
+}
+
+.dashboard-main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 /* Cards de relatórios */
 .relatorio-card {
   transition: all 0.3s ease;
