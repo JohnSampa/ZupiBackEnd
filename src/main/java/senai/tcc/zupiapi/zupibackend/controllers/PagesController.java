@@ -48,4 +48,28 @@ public class PagesController {
         return "agenda";
     }
 
+    @GetMapping("/sobre")
+    public String sobre() {
+        return "sobre";
+    }
+
+    @GetMapping("/planos")
+    public String planos() {
+        return "planos";
+    }
+
+    @GetMapping("/contatos")
+    public String contatos() {
+        return "contato";
+    }
+
+    @GetMapping("/configuracoes")
+    public String configuracoes() {
+        return "configuracoes";
+    }
+
+    @GetMapping("/videos")
+    public String videos() {
+        return "videos";
+    }
 }

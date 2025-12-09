@@ -30,7 +30,7 @@ async function loginUser(event) {
             const responseData = await response.json();
             localStorage.setItem('userId', responseData.id);
             localStorage.removeItem('dailyReportId');
-            window.location.href = 'dashboard-pais.html';
+            window.location.href = '/dashboard';
         }
 
     } catch (error) {

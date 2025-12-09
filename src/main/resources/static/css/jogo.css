@@ -1,0 +1,105 @@
+/* ===================================================
+   Zupi - Jogo CSS
+   Estilos específicos da página de Jogos
+   =================================================== */
+
+/* Header do jogo */
+.jogo-header {
+  background: var(--zupi-white);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem 0;
+  margin-bottom: 2rem;
+}
+
+/* Board do jogo */
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.board-card {
+  aspect-ratio: 1;
+  background: var(--zupi-white);
+  border: 3px solid var(--zupi-primary-solid);
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.board-card:hover {
+  transform: scale(1.05);
+  border-color: var(--zupi-highlight);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.board-card.flipped {
+  background: var(--zupi-primary-gradient);
+  color: var(--zupi-white);
+}
+
+.board-card.matched {
+  background: var(--zupi-accent);
+  border-color: var(--zupi-accent);
+  opacity: 0.7;
+  cursor: default;
+}
+
+/* Estatísticas do jogo */
+.jogo-stats {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.jogo-stats > div {
+  font-size: 1.1rem;
+  color: var(--zupi-text);
+}
+
+.jogo-stats strong {
+  color: var(--zupi-primary-solid);
+  font-size: 1.3rem;
+}
+
+/* Modal de vitória */
+#winModal .modal-content {
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+#winModal .modal-header {
+  background: var(--zupi-primary-gradient);
+  color: var(--zupi-white);
+  border-radius: 16px 16px 0 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .board {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+  
+  .board-card {
+    font-size: 1.5rem;
+  }
+  
+  .jogo-stats {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+}
+
