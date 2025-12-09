@@ -72,4 +72,11 @@ public class PagesController {
     public String videos() {
         return "videos";
     }
+
+    @GetMapping("/menuJogos")
+    public String menuJogos() { return "menuJogos"; }
+
+    @GetMapping("/jogoMemoria")
+    public String jogoMemoria() { return "jogoMemoria"; }
+
 }
