@@ -93,4 +93,9 @@ public class PagesController {
         return "jogo-cores-formas";
     }
 
+    @GetMapping("/jogoMath")
+    public String jogoMath() {
+        return "JogoMath";
+    }
+
 }

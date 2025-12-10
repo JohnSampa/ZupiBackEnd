@@ -5,12 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2c06277b-b4b7-4ca3-b89b-b0dd05cf85f8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/perfilPageScript.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/senai/tcc/zupiapi/zupibackend/controllers/ChildController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/senai/tcc/zupiapi/zupibackend/controllers/ChildController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/senai/tcc/zupiapi/zupibackend/services/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/senai/tcc/zupiapi/zupibackend/services/EventService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/senai/tcc/zupiapi/zupibackend/controllers/ChildController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/senai/tcc/zupiapi/zupibackend/controllers/ChildController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/senai/tcc/zupiapi/zupibackend/services/EventService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/senai/tcc/zupiapi/zupibackend/services/EventService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/senai/tcc/zupiapi/zupibackend/config/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/senai/tcc/zupiapi/zupibackend/controllers/PagesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/senai/tcc/zupiapi/zupibackend/controllers/PagesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/JogoMath.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/JogoMath.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/configuracoes.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/configuracoes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/perfil-criancas.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/perfil-criancas.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-dev.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/senai/tcc/zupiapi/zupibackend/config/Test.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/senai/tcc/zupiapi/zupibackend/controllers/PagesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/senai/tcc/zupiapi/zupibackend/controllers/PagesController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/configuracoes.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/configuracoes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/perfil-criancas.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/perfil-criancas.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +33,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Record" />
+        <option value="JavaScript File" />
+        <option value="Dockerfile" />
       </list>
     </option>
   </component>
@@ -50,6 +64,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Maven.zupibackend [clean].executor": "Run",
+    "Maven.zupibackend [install].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
@@ -62,14 +78,21 @@
     "Spring Boot.ZupibackendApplication.executor": "Run",
     "git-widget-placeholder": "testes",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/aurij/Desktop/TCC-DS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\aurij\Desktop\TCC-DS" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="ZupibackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
@@ -96,7 +119,13 @@
       <option name="presentableId" value="Default" />
       <updated>1765316369602</updated>
       <workItem from="1765316374316" duration="230000" />
-      <workItem from="1765316634241" duration="15814000" />
+      <workItem from="1765316634241" duration="20385000" />
+      <workItem from="1765338750936" duration="31000" />
+      <workItem from="1765339291662" duration="1582000" />
+      <workItem from="1765342306903" duration="1687000" />
+      <workItem from="1765345452361" duration="19000" />
+      <workItem from="1765345770904" duration="197000" />
+      <workItem from="1765346320193" duration="1313000" />
     </task>
     <servers />
   </component>
