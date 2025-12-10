@@ -1,20 +1,33 @@
-FROM ubuntu:latest AS build
+## Estágio 1: BUILD
+# Usa uma imagem especializada que já inclui Maven e JDK 21
+FROM maven:3.9-jdk-21 AS build
 
-RUN apt-get update
+# Define o diretório de trabalho
+WORKDIR /app
 
-RUN apt-get install openjdk-21-jdk -y
+# Otimização de Cache: Copia o pom.xml e baixa as dependências primeiro.
+# Se o pom.xml não mudar, o Docker usa o cache aqui, acelerando o build.
+COPY pom.xml .
+RUN mvn dependency:go-offline
 
-COPY . .
+# Copia o código fonte e compila
+COPY src .
+RUN mvn clean install -DskipTests
 
-RUN apt-get install maven -y
 
-RUN mvn clean install
+## Estágio 2: PRODUÇÃO (Runtime)
+# Usa uma imagem segura, leve e que contém apenas o JRE 21 (mais leve que o JDK)
+FROM eclipse-temurin:21-jre-jammy
 
-FROM openjdk:21-jdk-slim
-
+# Expõe a porta que a aplicação irá usar
 EXPOSE 8080
 
-COPY --from=build /target/zupibackend-0.0.1-SNAPSHOT.jar app.jar
+# Define o usuário que rodará a aplicação (boa prática de segurança)
+USER nonroot:nonroot
 
-ENTRYPOINT ["java","-jar", "app.jar"]
+# Copia o JAR do estágio de build para o estágio final
+# O caminho do JAR deve ser /app/target/... pois definimos WORKDIR /app no build
+COPY --from=build /app/target/zupibackend-0.0.1-SNAPSHOT.jar app.jar
 
+# Define o comando que será executado ao iniciar o container
+ENTRYPOINT ["java","-jar", "/app.jar"]
