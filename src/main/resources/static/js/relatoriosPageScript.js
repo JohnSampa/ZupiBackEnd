@@ -1,3 +1,4 @@
+const API_BASE = window.API_BASE_URL || window.location.origin;
 let skillThemes = [];
 let dailyReportsData = [];
 
@@ -50,7 +51,7 @@ async function getRecentsReports() {
   try {
     const childId = localStorage.getItem('childId');
 
-    const response = await fetch(`http://localhost:8080/reports/lasted/${childId}`, {
+    const response = await fetch(`${API_BASE}/reports/lasted/${childId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -133,7 +134,7 @@ function setupScoresUI() {
 async function getSkillThems() {
 
   try {
-    const response = await fetch('http://localhost:8080/skillAreas', {
+    const response = await fetch(`${API_BASE}/skillAreas`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -206,7 +207,7 @@ async function loadChildrenToSelect() {
   }
 
   try {
-    const response = await fetch(`http://localhost:8080/child/${userId}`, {
+    const response = await fetch(`${API_BASE}/child/${userId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -285,7 +286,7 @@ function setupReportSaveButton() {
 
           console.log(reportData);
 
-          response = await fetch(`http://localhost:8080/reports/${childId}`, {
+          response = await fetch(`${API_BASE}/reports/${childId}`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -306,7 +307,7 @@ function setupReportSaveButton() {
 
           console.log(reportData);
 
-          response = await fetch(`http://localhost:8080/reports/${childId}`, {
+          response = await fetch(`${API_BASE}/reports/${childId}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json'
@@ -355,7 +356,7 @@ async function getSkillAverage(){
   try {
     const childId = localStorage.getItem('childId');
 
-    const response = await fetch(`http://localhost:8080/reports/avg/${childId}`, {
+    const response = await fetch(`${API_BASE}/reports/avg/${childId}`, {
       method: 'GET',
       headers: { 
         'Content-Type': 'application/json'

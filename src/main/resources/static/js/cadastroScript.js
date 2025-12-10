@@ -1,4 +1,6 @@
 
+const API_BASE = window.API_BASE_URL || window.location.origin;
+
 document.addEventListener('DOMContentLoaded', function() {
     const cadastroForm = document.getElementById('signupForm');
    
@@ -21,7 +23,7 @@ async function cadastrar(event) {
     };
 
     try {
-        const response = await fetch('http://localhost:8080/auth/register', {
+        const response = await fetch(`${API_BASE}/auth/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -1,3 +1,5 @@
+    const API_BASE = window.API_BASE_URL || window.location.origin;
+
     document.addEventListener('DOMContentLoaded', function() {
       loadChildrenProfiles();
     });
@@ -11,7 +13,7 @@
       }
 
       try {
-        const response = await fetch(`http://localhost:8080/child/${userId}`, {
+        const response = await fetch(`${API_BASE}/child/${userId}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'

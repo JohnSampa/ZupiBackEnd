@@ -1,6 +1,8 @@
+const API_BASE = window.API_BASE_URL || window.location.origin;
+
 const getSkillThemes = async () => {
     try {
-        const response = await fetch('http://localhost:8080/skillAreas', {
+        const response = await fetch(`${API_BASE}/skillAreas`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -28,7 +30,7 @@ const getChildren = async () => {
     }
 
     try {
-        const response = await fetch(`http://localhost:8080/child/${userId}`, {
+        const response = await fetch(`${API_BASE}/child/${userId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -95,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
 async function  findAllEvents() {
     const userId = localStorage.getItem('userId');
 
-    const response = await fetch(`http://localhost:8080/events/${userId}`, {
+    const response = await fetch(`${API_BASE}/events/${userId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -183,7 +185,7 @@ async function salveEvent() {
             console.log('FormData enviado:', formData);
 
             try {   
-                const response = await fetch('http://localhost:8080/events', {
+                const response = await fetch(`${API_BASE}/events`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

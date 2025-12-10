@@ -1,3 +1,5 @@
+const API_BASE = window.API_BASE_URL || window.location.origin;
+
 document.addEventListener('DOMContentLoaded', function () {
      dashboardLoad();
 });
@@ -6,7 +8,7 @@ async function getUserData() {
 
     const userId = localStorage.getItem('userId');
 
-    const response = await fetch(`http://localhost:8080/auth/${userId}`, {
+    const response = await fetch(`${API_BASE}/auth/${userId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -19,7 +21,7 @@ async function getUserData() {
 
 async function getChildData() {
     const userId = localStorage.getItem('userId');
-    const response = await fetch(`http://localhost:8080/child/${userId}`, {
+    const response = await fetch(`${API_BASE}/child/${userId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -49,7 +51,7 @@ async function cadastrarCrianca() {
     console.log(childData);
 
     try {
-        const response = await fetch('http://localhost:8080/child', {
+        const response = await fetch(`${API_BASE}/child`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

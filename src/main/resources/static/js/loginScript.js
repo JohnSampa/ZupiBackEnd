@@ -1,3 +1,5 @@
+const API_BASE = window.API_BASE_URL || window.location.origin;
+
 document.addEventListener('DOMContentLoaded', function() {
 
     const loginForm = document.getElementById('signupForm');
@@ -17,7 +19,7 @@ async function loginUser(event) {
     };
 
     try {
-        const response = await fetch('http://localhost:8080/auth/login', {
+        const response = await fetch(`${API_BASE}/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
