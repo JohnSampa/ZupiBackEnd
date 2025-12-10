@@ -74,9 +74,28 @@ public class PagesController {
     }
 
     @GetMapping("/menuJogos")
-    public String menuJogos() { return "menuJogos"; }
+    public String menuJogos() {
+        return "menuJogos";
+    }
 
     @GetMapping("/jogoMemoria")
-    public String jogoMemoria() { return "jogoMemoria"; }
+    public String jogoMemoria() {
+        return "jogoMemoria";
+    }
+
+    @GetMapping("/JogoLigarObjetos")
+    public String JogoLigarObjetos() {
+        return "jogo-ligar-objetos";
+    }
+
+    @GetMapping("/jogoCoresFormas")
+    public String jogoCoresFormas() {
+        return "jogo-cores-formas";
+    }
+
+    @GetMapping("/jogoMath")
+    public String jogoMath() {
+        return "JogoMath";
+    }
 
 }

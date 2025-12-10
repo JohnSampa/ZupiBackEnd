@@ -1,3 +1,52 @@
+const getSkillThemes = async () => {
+    try {
+        const response = await fetch('http://localhost:8080/skillAreas', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro ao buscar skill areas');
+        }
+
+        const themes = await response.json();
+        return themes;
+    } catch (error) {
+        console.error('Erro ao buscar skill areas:', error);
+        return [];
+    }
+}
+
+const getChildren = async () => {
+    const userId = localStorage.getItem('userId');
+
+    if (!userId) {
+        console.error('ID de usuário não encontrado');
+        return [];
+    }
+
+    try {
+        const response = await fetch(`http://localhost:8080/child/${userId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro ao buscar crianças');
+        }
+
+        const children = await response.json();
+        return children;
+    } catch (error) {
+        console.error('Erro ao buscar crianças:', error);
+        return [];
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const agendaItems = document.querySelector('#events');
     const saveEventBtn = document.getElementById('saveEventBtn');
@@ -5,7 +54,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Carrega eventos existentes
     findAllEvents().then(events => {
-        events.forEach(event => {
+        // Ordena eventos pela data mais próxima do dia atual
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // Zera horas para comparar apenas datas
+
+        const sortedEvents = events.sort((a, b) => {
+            const dateA = new Date(a.date);
+            const dateB = new Date(b.date);
+            
+            // Calcula a diferença absoluta em milissegundos entre a data do evento e hoje
+            const diffA = Math.abs(dateA - today);
+            const diffB = Math.abs(dateB - today);
+            
+            // Ordena pela menor diferença (mais próximo de hoje primeiro)
+            return diffA - diffB;
+        });
+
+        sortedEvents.forEach(event => {
             const eventCardHTML = createEventCard(event);
             agendaItems.insertAdjacentHTML('beforeend', eventCardHTML);
         });
@@ -13,16 +78,24 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('Erro ao buscar eventos:', error);
     });
 
+    // Carrega crianças e skill areas nos selects
+    loadChildren();
+    loadSkillThemes();
+
     // Salva novo evento
     if (saveEventBtn) {
         saveEventBtn.addEventListener('click', salveEvent);
     }
+    
 
 });
 
-async function  findAllEvents() {
 
-    const response = await fetch('http://localhost:8080/events', {
+
+async function  findAllEvents() {
+    const userId = localStorage.getItem('userId');
+
+    const response = await fetch(`http://localhost:8080/events/${userId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -58,7 +131,7 @@ function createEventCard(event) {
     });
 
     const childName = event.child.name || 'Não informado';
-    const category = event.category || event.eventCategory || 'Sem categoria';
+    const category = event.skillArea.name || 'Sem categoria';
 
     return `
             <div class="col-md-6 col-lg-4">
@@ -83,19 +156,31 @@ async function salveEvent() {
             const finishTimeDate = createDate(document.getElementById('eventDate').value,document.getElementById('eventEnd').value);
             
 
-            const formData = {
-                title: document.getElementById('eventTitle').value,
-                date: data.toISOString(),
-                finish: finishTimeDate.toISOString(),
-                child: document.getElementById('eventChild').value
-            };
-
+            const childIdValue = document.getElementById('eventChild').value;
+            const skillAreaValue = document.getElementById('eventCategory').value;
+            const userIdValue = localStorage.getItem('userId');
 
             // Validação básica
-            if (!formData.title || !formData.date || !formData.finish || !formData.child) {
+            if (!document.getElementById('eventTitle').value || 
+                !document.getElementById('eventDate').value || 
+                !document.getElementById('eventTime').value ||
+                !document.getElementById('eventEnd').value ||
+                !childIdValue || 
+                !skillAreaValue) {
                 alert('Por favor, preencha todos os campos!');
                 return;
             }
+
+            const formData = {
+                title: document.getElementById('eventTitle').value,
+                date: data.toISOString(),
+                finish: finishTimeDate.toISOString(),   
+                childId: parseInt(childIdValue),
+                skillArea: parseInt(skillAreaValue),
+                userId: parseInt(userIdValue)
+            };
+
+            console.log('FormData enviado:', formData);
 
             try {   
                 const response = await fetch('http://localhost:8080/events', {
@@ -131,4 +216,54 @@ function createDate(date,hours){
 
     return new Date(year, month - 1, day, hour, minute, 0   );
 }
+
+async function loadChildren() {
+    try {
+        const childrenList = await getChildren();
+        const select = document.getElementById('eventChild');
+        
+        if (!select) {
+            console.error('Elemento eventChild não encontrado');
+            return;
+        }
+
+        // Limpa opções existentes (exceto a primeira se houver)
+        select.innerHTML = '<option value="">Selecionar criança</option>';
+
+        childrenList.forEach(child => {
+            const option = document.createElement('option');
+            option.value = child.id;
+            option.textContent = child.name;
+            select.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Erro ao carregar crianças:', error);
+    }
+}
+
+async function loadSkillThemes() {
+    try {   
+        const themesList = await getSkillThemes();
+        const select = document.getElementById('eventCategory');
+        
+        if (!select) {
+            console.error('Elemento eventCategory não encontrado');
+            return;
+        }
+
+        // Limpa opções existentes (exceto a primeira se houver)
+        select.innerHTML = '<option value="">Selecionar categoria</option>';
+
+        themesList.forEach(theme => {
+            const option = document.createElement('option');
+            option.value = theme.id;
+            option.textContent = theme.name;
+            select.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Erro ao carregar skill themes:', error);
+    }
+}
+
+
 
