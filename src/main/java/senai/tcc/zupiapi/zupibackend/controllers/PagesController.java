@@ -88,4 +88,9 @@ public class PagesController {
         return "jogo-ligar-objetos";
     }
 
+    @GetMapping("/jogoCoresFormas")
+    public String jogoCoresFormas() {
+        return "jogo-cores-formas";
+    }
+
 }

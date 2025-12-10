@@ -98,7 +98,7 @@ function createChildCard(child) {
                   <img src="/img/logokids1.png" class="img-fluid mx-auto mb-3" style="max-width: 80px;">
                   <h3 class="card-title h6 mb-2">${child.name}</h3>
                   <p class="card-text text-muted small flex-grow-1">Idade: ${child.age}</p>
-                  <a href="#" class="btn btn-primary btn-sm mt-auto" data-childId="${child.id}">Ver Perfil</a>
+                  <a href="/selecao-perfil" class="btn btn-primary btn-sm mt-auto" data-childId="${child.id}">Ver Perfil</a>
                 </div>
               </div>
             </div>
