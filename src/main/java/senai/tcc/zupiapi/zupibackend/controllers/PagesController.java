@@ -42,7 +42,6 @@ public class PagesController {
         return "perfil-criancas";
     }
 
-
     @GetMapping("/agenda")
     public String agenda() {
         return "agenda";
