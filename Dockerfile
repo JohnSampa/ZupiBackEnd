@@ -1,33 +1,42 @@
-## Estágio 1: BUILD
-# Usa uma imagem especializada que já inclui Maven e JDK 21
-FROM maven:3.9-jdk-21 AS build
+# -------------------------
+# Estágio 1: BUILD
+# -------------------------
+FROM maven:3.9.8-eclipse-temurin-21 AS build
 
-# Define o diretório de trabalho
 WORKDIR /app
 
-# Otimização de Cache: Copia o pom.xml e baixa as dependências primeiro.
-# Se o pom.xml não mudar, o Docker usa o cache aqui, acelerando o build.
-COPY pom.xml .
-RUN mvn dependency:go-offline
+# Copia apenas pom.xml para aproveitar cache de dependências
+COPY pom.xml ./
 
-# Copia o código fonte e compila
-COPY src .
-RUN mvn clean install -DskipTests
+# Baixa dependências para usar cache (modo batch)
+RUN mvn -B dependency:go-offline
 
+# Copia o restante do projeto e faz o build (skipTests para builds mais rápidos)
+COPY . .
+RUN mvn -B -DskipTests package
 
-## Estágio 2: PRODUÇÃO (Runtime)
-# Usa uma imagem segura, leve e que contém apenas o JRE 21 (mais leve que o JDK)
+# -------------------------
+# Estágio 2: RUNTIME
+# -------------------------
 FROM eclipse-temurin:21-jre-jammy
 
-# Expõe a porta que a aplicação irá usar
+# Cria usuário não-root e home (portátil para imagens base Debian/Ubuntu)
+RUN groupadd --gid 1000 appgroup \
+ && useradd --uid 1000 --gid appgroup --create-home --shell /bin/false appuser
+
+WORKDIR /home/appuser
+
+# Exponha a porta da aplicação
 EXPOSE 8080
 
-# Define o usuário que rodará a aplicação (boa prática de segurança)
-USER nonroot:nonroot
+# Copia o JAR do estágio de build (usa curinga pra cobrir nome do artefato)
+COPY --from=build /app/target/*.jar /home/appuser/app.jar
 
-# Copia o JAR do estágio de build para o estágio final
-# O caminho do JAR deve ser /app/target/... pois definimos WORKDIR /app no build
-COPY --from=build /app/target/zupibackend-0.0.1-SNAPSHOT.jar app.jar
+# Ajusta permissões para o usuário não-root
+RUN chown appuser:appgroup /home/appuser/app.jar
 
-# Define o comando que será executado ao iniciar o container
-ENTRYPOINT ["java","-jar", "/app.jar"]
+# Switch para usuário não-root
+USER appuser
+
+# Comando padrão
+ENTRYPOINT ["java","-jar","/home/appuser/app.jar"]
