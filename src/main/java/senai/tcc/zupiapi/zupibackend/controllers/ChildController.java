@@ -22,7 +22,7 @@ public class ChildController {
 
     @GetMapping
     public ResponseEntity<List<Child>> findAll() {
-        return ResponseEntity.ok(childService.findAll());
+        return ResponseEntity.ok().body(childService.findAll());
     }
 
     @GetMapping(value = "/{id}")

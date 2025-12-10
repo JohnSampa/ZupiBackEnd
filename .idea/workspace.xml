@@ -5,32 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2c06277b-b4b7-4ca3-b89b-b0dd05cf85f8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/senai/tcc/zupiapi/zupibackend/dto/EventDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/senai/tcc/zupiapi/zupibackend/controllers/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/senai/tcc/zupiapi/zupibackend/controllers/EventController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/senai/tcc/zupiapi/zupibackend/controllers/PagesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/senai/tcc/zupiapi/zupibackend/controllers/PagesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/senai/tcc/zupiapi/zupibackend/model/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/senai/tcc/zupiapi/zupibackend/model/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/senai/tcc/zupiapi/zupibackend/repositories/EventRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/senai/tcc/zupiapi/zupibackend/repositories/EventRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/senai/tcc/zupiapi/zupibackend/controllers/ChildController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/senai/tcc/zupiapi/zupibackend/controllers/ChildController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/senai/tcc/zupiapi/zupibackend/services/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/senai/tcc/zupiapi/zupibackend/services/EventService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/relatorios.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/relatorios.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/agendaScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/agendaScript.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/dashboardScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/dashboardScript.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/agenda.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/agenda.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/dashboard-pais.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/dashboard-pais.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/menuJogos.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/menuJogos.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/relatorios.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/relatorios.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/senai/tcc/zupiapi/zupibackend/controllers/EventController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/senai/tcc/zupiapi/zupibackend/controllers/EventController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/senai/tcc/zupiapi/zupibackend/controllers/PagesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/senai/tcc/zupiapi/zupibackend/controllers/PagesController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/senai/tcc/zupiapi/zupibackend/model/Event.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/senai/tcc/zupiapi/zupibackend/model/Event.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/senai/tcc/zupiapi/zupibackend/repositories/EventRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/senai/tcc/zupiapi/zupibackend/repositories/EventRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/senai/tcc/zupiapi/zupibackend/controllers/ChildController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/senai/tcc/zupiapi/zupibackend/controllers/ChildController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/senai/tcc/zupiapi/zupibackend/services/EventService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/senai/tcc/zupiapi/zupibackend/services/EventService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/relatorios.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/relatorios.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/js/agendaScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/agendaScript.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/js/dashboardScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/dashboardScript.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/agenda.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/agenda.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/dashboard-pais.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/dashboard-pais.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/menuJogos.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/menuJogos.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/relatorios.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/relatorios.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +96,7 @@
       <option name="presentableId" value="Default" />
       <updated>1765316369602</updated>
       <workItem from="1765316374316" duration="230000" />
-      <workItem from="1765316634241" duration="13583000" />
+      <workItem from="1765316634241" duration="15814000" />
     </task>
     <servers />
   </component>

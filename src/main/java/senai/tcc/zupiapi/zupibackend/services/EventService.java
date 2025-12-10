@@ -45,6 +45,7 @@ public class EventService {
         Child newChild = childRepository.findById(event.childId()).orElse(null);
         newEvent.setChild(newChild);
         User newUser = userRepository.findById(event.userId()).orElse(null);
+        newEvent.setUser(newUser);
         return eventRepository.save(newEvent);
     }
 }
