@@ -5,24 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2c06277b-b4b7-4ca3-b89b-b0dd05cf85f8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/perfilPageScript.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/senai/tcc/zupiapi/zupibackend/config/Test.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/senai/tcc/zupiapi/zupibackend/controllers/PagesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/senai/tcc/zupiapi/zupibackend/controllers/PagesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/JogoMath.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/JogoMath.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/configuracoes.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/configuracoes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/perfil-criancas.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/perfil-criancas.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application-dev.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/senai/tcc/zupiapi/zupibackend/config/Test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/senai/tcc/zupiapi/zupibackend/controllers/PagesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/senai/tcc/zupiapi/zupibackend/controllers/PagesController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/configuracoes.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/configuracoes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/perfil-criancas.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/perfil-criancas.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +109,7 @@
       <workItem from="1765342306903" duration="1687000" />
       <workItem from="1765345452361" duration="19000" />
       <workItem from="1765345770904" duration="197000" />
-      <workItem from="1765346320193" duration="1313000" />
+      <workItem from="1765346320193" duration="2001000" />
     </task>
     <servers />
   </component>
