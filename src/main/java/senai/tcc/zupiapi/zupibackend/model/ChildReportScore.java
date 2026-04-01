@@ -13,6 +13,8 @@ public class ChildReportScore {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Integer score;
+
     @ManyToOne
     @JsonIgnore
     private ChildReport childReport;
@@ -20,7 +22,6 @@ public class ChildReportScore {
     @ManyToOne
     private SkillArea skillArea;
 
-    private Integer score;
 
     public ChildReportScore() {}
 

@@ -29,8 +29,11 @@ public class SkillAreaController {
     public ResponseEntity<SkillArea> save(@RequestBody SkillArea skillArea){
         SkillArea saved = skillAreaService.save(skillArea);
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(saved.getId()).toUri();
+        URI uri = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(saved.getId())
+                .toUri();
 
         return ResponseEntity.created(uri).body(saved);
     }

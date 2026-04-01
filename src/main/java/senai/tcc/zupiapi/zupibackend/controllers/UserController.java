@@ -6,8 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import senai.tcc.zupiapi.zupibackend.dto.LoginDTO;
-import senai.tcc.zupiapi.zupibackend.dto.UserDTO;
-import senai.tcc.zupiapi.zupibackend.dto.UserResponseDTO;
+import senai.tcc.zupiapi.zupibackend.dto.request.UserRequest;
+import senai.tcc.zupiapi.zupibackend.dto.response.UserResponse;
 import senai.tcc.zupiapi.zupibackend.services.UserService;
 
 import java.net.URI;
@@ -22,29 +22,31 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<UserDTO>> findAll() {
-        List<UserDTO> users = userService.findAll();
+    public ResponseEntity<List<UserResponse>> findAll() {
+        List<UserResponse> users = userService.findAll();
         return ResponseEntity.ok().body(users);
     }
 
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<UserResponseDTO> findById(@PathVariable Long id) {
+    public ResponseEntity<UserResponse> findById(@PathVariable Long id) {
         return ResponseEntity.ok().body(userService.findById(id));
     }
 
     @PostMapping(value = "/register")
-    public ResponseEntity<UserResponseDTO> register(@RequestBody UserDTO user) {
-        UserResponseDTO usurious  = userService.save(user);
+    public ResponseEntity<UserResponse> register(@RequestBody UserRequest user) {
+        UserResponse userResponse  = userService.save(user);
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(usurious.id()).toUri();
+        URI uri = ServletUriComponentsBuilder
+                .fromCurrentRequest().path("/{id}")
+                .buildAndExpand(userResponse.id())
+                .toUri();
 
-        return ResponseEntity.created(uri).body(usurious);
+        return ResponseEntity.created(uri).body(userResponse);
     }
 
     @PostMapping(value = "/login")
-    public ResponseEntity<UserResponseDTO> login(@RequestBody LoginDTO user) {
+    public ResponseEntity<UserResponse> login(@RequestBody LoginDTO user) {
         Boolean validPassword = userService.validationPassword(user);
 
         if (!validPassword) {

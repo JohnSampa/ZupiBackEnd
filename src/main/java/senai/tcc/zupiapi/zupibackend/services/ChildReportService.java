@@ -71,7 +71,6 @@ public class ChildReportService {
 
         childReport.scores().forEach(
                 childReportScoreDTO -> {
-
                     ChildReportScore score = childReportScoreService.save(childReportScoreDTO, report);
                     report.getScores().add(score);
                 }
