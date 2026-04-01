@@ -3,9 +3,12 @@ package senai.tcc.zupiapi.zupibackend.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import senai.tcc.zupiapi.zupibackend.dto.ChildReportDTO;
-import senai.tcc.zupiapi.zupibackend.dto.ChildReportNewDTO;
+import senai.tcc.zupiapi.zupibackend.dto.mapper.ChildReportMapper;
+import senai.tcc.zupiapi.zupibackend.dto.response.ChildReportResponse;
+import senai.tcc.zupiapi.zupibackend.dto.request.ChildReportRequest;
 import senai.tcc.zupiapi.zupibackend.dto.ChildScoresAvaregesByAreaDTO;
+import senai.tcc.zupiapi.zupibackend.exceptions.ResourceNotFoundException;
+import senai.tcc.zupiapi.zupibackend.model.Child;
 import senai.tcc.zupiapi.zupibackend.model.ChildReport;
 import senai.tcc.zupiapi.zupibackend.model.ChildReportScore;
 import senai.tcc.zupiapi.zupibackend.repositories.ChildReportRepository;
@@ -28,54 +31,57 @@ public class ChildReportService {
     @Autowired
     private ChildReportScoreService childReportScoreService;
 
-    public List<ChildReportDTO> getChildLast3DaysReports(Integer id) {
+    @Autowired
+    private ChildReportMapper reportMapper;
+
+    public List<ChildReportResponse> getChildLast3DaysReports(Long childId) {
         Instant daysBefore3 = LocalDate.now()
                 .minusDays(3)
                 .atStartOfDay(ZoneId.systemDefault())
                 .toInstant();
 
-        return childReportRepository.findAllByChildIdAndDateAfter(id, daysBefore3)
-                .stream()
-                .map(ChildReportDTO::new)
-                .toList();
+        return reportMapper.toResponseList(
+                childReportRepository.findAllByChildIdAndDateAfter(childId, daysBefore3));
 
     }
 
-    public List<ChildScoresAvaregesByAreaDTO> getChildScoresAreaAvareges(Integer id) {
+    public List<ChildScoresAvaregesByAreaDTO> getChildScoresAreaAvareges(Long id) {
         return childReportRepository.findChildScoresAreaAvareges(id);
     }
 
-    public ChildReportDTO saveChildReport(ChildReportNewDTO childReport, Integer childId) {
+    public ChildReportResponse saveChildReportByChildId(ChildReportRequest childReport, Long childId) {
 
-        ChildReport report = new ChildReport();
+        Child child = childRepository.findById(childId)
+                .orElseThrow(()-> new RuntimeException("Child Not Found"));
 
-        report.setDate(childReport.date());
-        report.setChild(childRepository.findById(childId).orElseThrow());
+        ChildReport report = reportMapper.toEntity(childReport);
+
+        report.setChild(child);
 
         childReportRepository.save(report);
 
         childReport.scores().forEach(
-                childReportScoreDTO -> {
-
-                    ChildReportScore score = childReportScoreService.save(childReportScoreDTO, report);
+                scoresRequest -> {
+                    ChildReportScore score = childReportScoreService.save(scoresRequest, report);
                     report.getScores().add(score);
                 }
         );
 
-        return new ChildReportDTO(childReportRepository.save(report));
+        return reportMapper.toResponse(report);
     }
 
-    public ChildReportDTO updateChildReport(ChildReportDTO childReport,Integer childId) {
+    public ChildReportResponse updateChildReport(ChildReportRequest reportScores,Long reportId ,Long childId) {
 
-        ChildReport report = childReportRepository.findByIdAndChildId(childReport.id(),childId);
+        ChildReport report = childReportRepository.findByIdAndChildId(reportId,childId)
+                .orElseThrow(()-> new ResourceNotFoundException("ChildReport Not Found"));
 
-        childReport.scores().forEach(
+        reportScores.scores().forEach(
                 childReportScoreDTO -> {
                     ChildReportScore score = childReportScoreService.save(childReportScoreDTO, report);
                     report.getScores().add(score);
                 }
         );
 
-        return new ChildReportDTO(childReportRepository.save(report));
+        return reportMapper.toResponse(report);
     }
 }

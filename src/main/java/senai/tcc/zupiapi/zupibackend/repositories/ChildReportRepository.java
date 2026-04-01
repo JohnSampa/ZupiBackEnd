@@ -7,9 +7,10 @@ import senai.tcc.zupiapi.zupibackend.model.ChildReport;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Optional;
 
 public interface ChildReportRepository extends JpaRepository<ChildReport, Long> {
-    List<ChildReport>  findAllByChildIdAndDateAfter(Integer child_id, Instant date);
+    List<ChildReport>  findAllByChildIdAndDateAfter(Long child_id, Instant date);
 
     @Query("""
         SELECT new senai.tcc.zupiapi.zupibackend.dto.ChildScoresAvaregesByAreaDTO(
@@ -21,7 +22,7 @@ public interface ChildReportRepository extends JpaRepository<ChildReport, Long> 
         WHERE r.child.id = :childId
         GROUP BY s.skillArea
     """)
-    List<ChildScoresAvaregesByAreaDTO> findChildScoresAreaAvareges(Integer childId);
+    List<ChildScoresAvaregesByAreaDTO> findChildScoresAreaAvareges(Long childId);
 
-    ChildReport findByIdAndChildId(Long id,Integer childId);
+    Optional<ChildReport> findByIdAndChildId(Long id, Long childId);
 }

@@ -3,10 +3,11 @@ package senai.tcc.zupiapi.zupibackend.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import senai.tcc.zupiapi.zupibackend.dto.ChildReportDTO;
-import senai.tcc.zupiapi.zupibackend.dto.ChildReportNewDTO;
+import senai.tcc.zupiapi.zupibackend.dto.response.ChildReportResponse;
+import senai.tcc.zupiapi.zupibackend.dto.request.ChildReportRequest;
 import senai.tcc.zupiapi.zupibackend.dto.ChildScoresAvaregesByAreaDTO;
 import senai.tcc.zupiapi.zupibackend.services.ChildReportService;
 
@@ -15,36 +16,52 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping(value = "/reports")
+@RequestMapping(value = "/child/{childId}/reports")
 public class ChildReportController {
 
     @Autowired
     private ChildReportService childReportService;
 
-    @GetMapping(value = "/lasted/{id}")
-    public ResponseEntity<List<ChildReportDTO>> getLast3daysReports(@PathVariable Integer id) {
-        return ResponseEntity.ok().body(childReportService.getChildLast3DaysReports(id));
+    @GetMapping(value = "/lasted")
+    public ResponseEntity<List<ChildReportResponse>> getLast3daysReports(
+            @PathVariable Long childId
+    ) {
+        return ResponseEntity.ok().body(childReportService.getChildLast3DaysReports(childId));
     }
 
-    @GetMapping(value = "/avg/{id}")
-    public ResponseEntity<List<ChildScoresAvaregesByAreaDTO>> getAllAverage(@PathVariable Integer id) {
+    @GetMapping(value = "/avg")
+    public ResponseEntity<List<ChildScoresAvaregesByAreaDTO>> getAllAverage(
+            @PathVariable Long childId
+    ) {
 
-        return ResponseEntity.ok().body(childReportService.getChildScoresAreaAvareges(id));
+        return ResponseEntity.ok().body(childReportService.getChildScoresAreaAvareges(childId));
     }
 
-    @PostMapping(value = "/{id}")       
-    public ResponseEntity<ChildReportDTO> saveChildReport(@RequestBody ChildReportNewDTO childReport, @PathVariable Integer id) {
-        ChildReportDTO savedChildReport = childReportService.saveChildReport(childReport,id);
+    @PostMapping()
+    public ResponseEntity<ChildReportResponse> saveChildReport(
+            @RequestBody ChildReportRequest childReport,
+            @PathVariable Long childId
+    ) {
+        ChildReportResponse savedChildReport = childReportService
+                .saveChildReportByChildId(childReport, childId);
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(savedChildReport.id()).toUri();
+        URI uri = ServletUriComponentsBuilder
+                .fromCurrentRequest().path("/{id}")
+                .buildAndExpand(savedChildReport.id())
+                .toUri();
 
         return ResponseEntity.created(uri).body(savedChildReport);
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<ChildReportDTO> updateChildReport(@RequestBody ChildReportDTO childReport,@PathVariable Integer id) {
-        ChildReportDTO savedChildReport = childReportService.updateChildReport(childReport,id);
+    public ResponseEntity<ChildReportResponse> updateChildReport(
+            @RequestBody ChildReportRequest childReport,
+            @PathVariable Long childId,
+            @PathVariable Long id
+    ) {
+        ChildReportResponse savedChildReport = childReportService
+                .updateChildReport(childReport,id,childId);
+
         return ResponseEntity.ok().body(savedChildReport);
     }
 }
