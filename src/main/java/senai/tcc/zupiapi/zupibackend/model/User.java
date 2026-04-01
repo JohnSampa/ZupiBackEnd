@@ -32,7 +32,6 @@ public class User {
     private List<Child> children = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
-    @JsonIgnore
     private List<Event> events = new ArrayList<>();
 
     public User() {}
@@ -78,6 +77,18 @@ public class User {
 
     public List<Child> getChildren() {
         return children;
+    }
+
+    public void setChildren(List<Child> children) {
+        this.children = children;
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
     }
 
     @Override

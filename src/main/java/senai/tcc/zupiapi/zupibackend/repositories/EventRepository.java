@@ -5,7 +5,7 @@ import senai.tcc.zupiapi.zupibackend.model.Event;
 
 import java.util.List;
 
-public interface EventRepository extends JpaRepository<Event, Integer> {
+public interface EventRepository extends JpaRepository<Event, Long> {
 
     List<Event> findAllByUserId(Long user_id);
 }

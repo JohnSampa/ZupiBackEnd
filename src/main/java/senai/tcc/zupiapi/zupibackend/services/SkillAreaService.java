@@ -36,4 +36,5 @@ public class SkillAreaService {
 
         return skillAreaMapper.toResponse(skillAreaRepository.save(skillArea));
     }
+
 }

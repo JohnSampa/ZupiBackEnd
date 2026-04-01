@@ -24,7 +24,6 @@ public class Child {
     private String condition;
     private Integer age;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "child")
     private List<Event> activits = new ArrayList<>();
 

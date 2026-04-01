@@ -8,13 +8,14 @@ import senai.tcc.zupiapi.zupibackend.model.Child;
 
 import java.util.List;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface ChildMapper {
 
     @Mapping(target = "activits", ignore = true)
     @Mapping(target = "responsible", ignore = true)
     @Mapping(target = "reports", ignore = true)
     Child toEntity(ChildRequest request);
+
 
     ChildResponse toResponse(Child child);
 
