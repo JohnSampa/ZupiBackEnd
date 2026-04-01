@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import senai.tcc.zupiapi.zupibackend.dto.ChildDTO;
-import senai.tcc.zupiapi.zupibackend.dto.ChildResponseDTO;
+import senai.tcc.zupiapi.zupibackend.dto.request.ChildRequest;
+import senai.tcc.zupiapi.zupibackend.dto.response.ChildResponse;
 import senai.tcc.zupiapi.zupibackend.model.Child;
 import senai.tcc.zupiapi.zupibackend.services.ChildService;
 
@@ -21,24 +21,44 @@ public class ChildController {
     private ChildService childService;
 
     @GetMapping
-    public ResponseEntity<List<Child>> findAll() {
+    public ResponseEntity<List<ChildResponse>> findAll() {
         return ResponseEntity.ok().body(childService.findAll());
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity< List<ChildResponseDTO>> findByResponsibleId(@PathVariable Long id) {
+    public ResponseEntity< List<ChildResponse>> findByResponsibleId(@PathVariable Long id) {
         return ResponseEntity.ok().body(childService.findByResponsibleId(id));
     }
 
     @PostMapping
-    public ResponseEntity<ChildResponseDTO> save(@RequestBody ChildDTO child) {
+    public ResponseEntity<ChildResponse> save(@RequestBody ChildRequest child) {
 
-        ChildResponseDTO savedChild = childService.save(child);
+        ChildResponse savedChild = childService.save(child);
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(savedChild.id()).toUri();
+        URI uri = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savedChild.id())
+                .toUri();
 
         return ResponseEntity.created(uri).body(savedChild);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ChildResponse> update(
+            @PathVariable Long id,
+            @RequestBody ChildRequest child
+    ) {
+        ChildResponse updatedChild = childService.update(id, child);
+
+        return ResponseEntity.ok().body(updatedChild);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        childService.delete(id);
+
+        return ResponseEntity.noContent().build();
     }
 
 }

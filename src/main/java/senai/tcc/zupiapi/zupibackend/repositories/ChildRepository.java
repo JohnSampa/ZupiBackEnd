@@ -5,6 +5,6 @@ import senai.tcc.zupiapi.zupibackend.model.Child;
 
 import java.util.List;
 
-public interface ChildRepository extends JpaRepository<Child, Integer> {
+public interface ChildRepository extends JpaRepository<Child, Long> {
     List<Child> findByResponsibleId(Long responsible_id);
 }

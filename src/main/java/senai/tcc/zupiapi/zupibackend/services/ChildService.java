@@ -1,10 +1,16 @@
 package senai.tcc.zupiapi.zupibackend.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
-import senai.tcc.zupiapi.zupibackend.dto.ChildDTO;
-import senai.tcc.zupiapi.zupibackend.dto.ChildResponseDTO;
+import senai.tcc.zupiapi.zupibackend.dto.mapper.ChildMapper;
+import senai.tcc.zupiapi.zupibackend.dto.request.ChildRequest;
+import senai.tcc.zupiapi.zupibackend.dto.response.ChildResponse;
+import senai.tcc.zupiapi.zupibackend.exceptions.DataBaseExceptions;
+import senai.tcc.zupiapi.zupibackend.exceptions.ResourceNotFoundException;
 import senai.tcc.zupiapi.zupibackend.model.Child;
+import senai.tcc.zupiapi.zupibackend.model.User;
 import senai.tcc.zupiapi.zupibackend.repositories.ChildRepository;
 import senai.tcc.zupiapi.zupibackend.repositories.UserRepository;
 
@@ -19,28 +25,54 @@ public class ChildService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<Child> findAll() {
-        return childRepository.findAll();
+    @Autowired
+    private ChildMapper childMapper;
+
+    public List<ChildResponse> findAll() {
+        return childMapper.toResponseList(childRepository.findAll());
     }
 
-    public Child findById(Integer id) {
-        return childRepository.findById(id).orElse(null);
+    public ChildResponse findById(Long id) {
+        Child child =  childRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Child not found"));
+
+        return childMapper.toResponse(child);
     }
 
-    public ChildResponseDTO save(ChildDTO child) {
-        Child childEntity = new Child();
-        childEntity.setName(child.name());
-        childEntity.setBirthDate(child.birthDate());
-        childEntity.setSchoolClass(child.schoolClass());
-        childEntity.setCondition(child.condition());
-        childEntity.setResponsible(userRepository.findById(child.responsibleId()).orElse(null));
+    public ChildResponse save(ChildRequest childRequest) {
+        User user = userRepository.findById(childRequest.responsibleId())
+                .orElseThrow(()-> new ResourceNotFoundException("User not found"));
 
-        return new ChildResponseDTO(childRepository.save(childEntity));
+        Child child = childMapper.toEntity(childRequest);
+
+        child.setResponsible(user);
+
+        return childMapper.toResponse(childRepository.save(child));
     }
 
-    public List<ChildResponseDTO> findByResponsibleId(Long id) {
+    public ChildResponse update(Long id, ChildRequest childRequest) {
+        Child child = childRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Child not found"));
+
+        child.setName(childRequest.name());
+        child.setBirthDate(childRequest.birthDate());
+        child.setSchoolClass(childRequest.schoolClass());
+        child.setCondition(childRequest.condition());
+
+        return childMapper.toResponse(childRepository.save(child));
+    }
+
+    public void delete(Long id) {
+        try {
+            childRepository.deleteById(id);
+        }catch(DataIntegrityViolationException e){
+            throw new DataBaseExceptions("Error deleting child");
+        }
+    }
+
+    public List<ChildResponse> findByResponsibleId(Long id) {
         List<Child> list = childRepository.findByResponsibleId(id);
 
-        return list.stream().map(ChildResponseDTO::new).toList();
+        return childMapper.toResponseList(list);
     }
 }
